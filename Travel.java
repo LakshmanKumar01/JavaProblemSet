@@ -1,5 +1,7 @@
 package com;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.*;
 public class Travel {
 	
 	public boolean isCarDriver(Driver driver) {
@@ -23,36 +25,44 @@ public class Travel {
 
 		}
 		return "";
-		
-		 }
-	public int retriveCountOfDriver(ArrayList<Driver> driverList, String category) {
-		int driversCount = 0;
-		for(Driver driver : driverList) {
-			if(driver.getCategory().equalsIgnoreCase(category)) {
-				driversCount++;
-			}
-		}
-		return driversCount;
-		
 	}
-	public ArrayList<Driver> retriveDriver(ArrayList<Driver> driverList, String category) {
-		ArrayList<Driver> response = new ArrayList<Driver>();
-		for(Driver driver : driverList) {
-			if(driver.getCategory().equalsIgnoreCase(category));
+
+
+public int retrieveCountOfDriver(ArrayList<Driver> driverList,String category) {
+	int driversCount = 0;
+	for (Driver driver : driverList) {
+		if(driver.getCategory().equalsIgnoreCase(category)) {
+			driversCount++;
+		}
+	}
+	return driversCount;
+}
+public ArrayList<Driver> retriveDriver(ArrayList<Driver> driverList, String category){
+	ArrayList<Driver> response = new ArrayList<Driver>();
+	
+	for (Driver driver : driverList) {
+		if(driver.getCategory().equalsIgnoreCase(category)) {
 			response.add(driver);
 		}
-		return response;
 	}
-		public Driver retriveMaximumDistanceTravelledDriver(ArrayList<Driver> driverList) {
-			Driver topDriver = new Driver();
-			if(!driverList.isEmpty()) {
-				topDriver = driverList.get(0);
-				for (Driver driver : driverList) {
-					if (driver.getTotalDistance() > topDriver.getTotalDistance()) {
-						topDriver = driver;
-					}
-				}
-			}
-			return topDriver;
+	return response;
+}
+// using Java8
+
+ public List<Driver> retriveDriverbyJava8(ArrayList<Driver> driverList,String category){
+	 List<Driver> response = driverList.stream().filter(d ->d.getCategory().equalsIgnoreCase(category)).collect(Collectors.toList());
+	 return response;
+}
+ public Driver retrieveMaximumDistance(ArrayList<Driver> driverList) {
+	 Driver topDriver = new Driver();
+	 if(!driverList.isEmpty()) {
+		 topDriver = driverList.get(0);
+		 for (Driver driver : driverList) {
+			if(driver.getTotalDistance() > topDriver.getTotalDistance()) {
+				topDriver = driver;
 			}
 		}
+	 }
+	 return topDriver;
+ }
+}
