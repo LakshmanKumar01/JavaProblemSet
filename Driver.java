@@ -50,5 +50,16 @@ public class Driver {
 	public void setTotalDistance(double totalDistance) {
 		this.totalDistance = totalDistance;
 	}
-}
+
+	@Override
+	public String toString() {
+		return "Driver [category=" + category + ", driverId=" + driverId + ", driverName=" + driverName
+				+ ", totalDistance=" + totalDistance + "]";
+	}
 	
+}
+	//toString is used for driversList.get(0) & driversList.get(1)
+/*toString --> Driver (Object)
+ 		   --> prints category 
+ 		   --> prints driverId
+ 		   --> prints driverName & distance*/
